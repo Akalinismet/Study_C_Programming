@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
+#include <math.h>
 
 int main(void)
 {
@@ -66,5 +67,64 @@ int main(void)
 	double max : 1.797693e+308
 	long double max : 1.797693e+308
 	*/
+
+	//scanf'deki deðikeni tanýmlarken önüne koyduðumuz & bu iþaret þunu refere eder; 
+	// x = deðiþken, &x = memory (ram)'deki x'in adresi
+
+	//Kullanýcýdan get ile string alma
+
+	//char ad[20];
+
+	//printf("Adinizi giriniz: ");
+	//gets(ad);
+	//printf("Girilen ad %s",ad);
+	//gets sadece string okur
+	
+	/* exp:yaþ hesaplama 
+	
+	int x;
+	int age;
+	printf("Please Enter Your Birth Year: ");
+	scanf_s("%d", &x);
+	
+	age = (2025 - x);
+	
+	printf("Your age is %d",age);
+	*/
+
+	//C de math kütüphanesi
+	//buradaký fonksýyonlar; 
+	//prýntfýn dýsýndada kullanýlabýlýr
+	//içerlerine sayý yerine deðiþkenler yazýlabilir 
+	
+	//printf("%d",abs(-5)); //mutlak deðer alma
+	//printf("%.2lf",pow(2,5)); //üs alma (taban,üs)
+	//printf("%.2f", floor(12.87)); //aþaðý yuvarlama
+	//printf("%.2f", ceil(3.27)); //yukarý yuvarlama
+	//printf("%.2f", sqrt(81)); //karekök alma
+	//printf("%.2f", exp(2)); //e üzeri alma (e^x),(e = 2.72) 
+	
+	//Type Casting
+	/*
+	int x = 771;
+	int y = 4;
+	int d = 6;
+	int g = 7;
+	
+	float z = (float) x / y;
+	double c = (double) d / g;
+	
+	printf("%f\n",z);
+	printf("%lf", c);
+	*/
+	
+	
+
+
+
+
+
+
+
 	return 0;
 }
