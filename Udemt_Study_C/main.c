@@ -1,7 +1,28 @@
-#include <stdio.h>
-#include <limits.h>
-#include <float.h>
-#include <math.h>
+#include <stdio.h> //Temel Komutlar için C Kütüphanesi
+#include <limits.h> //Veri Tipleri'nin Deðer Aralýklarýný Öðrenmek için Gerekli Kütüphane
+#include <float.h> //Float ile iþlemler kütüphanesi
+#include <math.h> //C Matematiksel iþlemler kütüphanesi
+
+/*
+//Celsius'u Fahrenheit'e Çevirme Fonksiyonu
+int a;
+
+float CelsiusToFahrenheit(int a) 
+{
+	return  ((a * ((float) 9 / 5)) + 32);
+}
+*/
+
+//Saniye Süreyi Saat-Dakika-Saniye'ye Dönüþtürme Fonksiyonu
+int saniye;
+
+int SecondTransformation(int saniye)
+{
+	//Önce saat = saniye / 3600
+	//Sonra dakika = (saniye % 3600) / 60
+	//En son saniye = saniye % 60
+	return;
+}
 
 int main(void)
 {
@@ -118,13 +139,45 @@ int main(void)
 	printf("%lf", c);
 	*/
 	
+	//if-else
+	/*
+	float a = 0.00; //sýcaklýk girdisi
+
+	printf("Please Enter your Temperature (in Celsius) (i.e. 27.2): ");
+	scanf_s("%f", &a);
+
+
+	if(a > 26.00)
+	{
+		printf("Your Temperature (%.2f) is Higher than the Room Temperature", a);
+	}
+	else if(a == 26.00)
+	{
+		printf("Your Tempreture (%.2f) is Equal the Room Temperature",a);
+	}
+	else
+	{
+		printf("Your Temperature (%.2f) is Lower than the Room Temperature",a);
+
+	}
+	*/
+	/*
+	//Celsius To Fahrenheit dönüþtürme (Fonksiyon Tanýmlayarak)
+	float b;
+
+	printf("Please Enter Your Celsius Tempature: ");
+	scanf_s("%d",&a);
 	
+	b = CelsiusToFahrenheit(a);
 
+	printf("Your Temperature's Fahrenheit Equal is: %.2f",b);
+	*/
+	
+	//Saniye Süreyi Saat-Dakika-Saniye'ye Dönüþtürme
 
+	int sonuc;
 
-
-
-
-
+	printf("Please Enter Your Second Type Time: ");
+	scanf_s("");
 	return 0;
 }
