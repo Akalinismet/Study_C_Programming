@@ -12,18 +12,22 @@ float CelsiusToFahrenheit(int a)
 	return  ((a * ((float) 9 / 5)) + 32);
 }
 */
-
+/*
 //Saniye Süreyi Saat-Dakika-Saniye'ye Dönüþtürme Fonksiyonu
 int saniye;
+int dakika;
+int saat;
 
 int SecondTransformation(int saniye)
 {
-	//Önce saat = saniye / 3600
-	//Sonra dakika = (saniye % 3600) / 60
-	//En son saniye = saniye % 60
-	return;
+	 
+	saat = saniye / 3600;
+	dakika = (saniye % 3600) / 60;
+	saniye = saniye % 60;
+	
+	printf("Your Time in format (h/m/s): %d:%d:%d",saat,dakika,saniye);
 }
-
+*/
 int main(void)
 {
 
@@ -62,7 +66,7 @@ int main(void)
 	//long long int sayý = 0; //þeklinde tanýmlanabilir
 	// %lld kullanýlýr
 
-	//deðer aralýklarýný öðrenmek için aþaðýdaki kod kullanýlabilir
+	//deðiþkenlerin tutabildikleri deðer aralýklarýný öðrenmek için aþaðýdaki kod kullanýlabilir
 	/*
 	printf("int min  : %d\n", INT_MIN);
 	printf("int max  : %d\n", INT_MAX);
@@ -172,12 +176,89 @@ int main(void)
 
 	printf("Your Temperature's Fahrenheit Equal is: %.2f",b);
 	*/
-	
+	/*
 	//Saniye Süreyi Saat-Dakika-Saniye'ye Dönüþtürme
-
-	int sonuc;
-
+	
 	printf("Please Enter Your Second Type Time: ");
-	scanf_s("");
+	scanf("%d",&saniye);
+
+	SecondTransformation(saniye);
+	*/
+
+	/*
+	//Üçgen olduðunu doðrulama ve heron formülüyle alan hesaplama
+	
+	float a, b, c; //üçgenin kenarlarý 
+	float alan;
+	float s;
+
+	printf("Please enter your Triangle's sides (in format a b c): ");
+	scanf("%f %f %f",&a,&b,&c);
+	
+	s = (a + b + c) / 2;
+
+	if ((a + b) > c)
+	{
+		if ((a + c) > b)
+		{
+			if ((b + c) > a)
+			{
+				alan = sqrt(s * (s - a) * (s - b) * (s - c));
+				
+				printf("Your Triangle's Area is %.2f", alan);
+				
+			}
+			else
+			{
+				printf("\nThis is Not a Triangle !");
+			}
+		}
+		else
+		{
+			printf("\nThis is Not a Triangle !");
+		}
+	}
+	else
+	{
+		printf("\nThis is Not a Triangle !");
+	}
+	*/
+	/*
+	//km-per price-consume a göre maliyet tüketim ve drive mode belirleme
+	float a; //kat edilen mesafe km cinsinde
+	float b; //harcanan yakýt litre cindisinden
+	float c; //yakýtýn litre baþý fiyatý tl cinsinden
+	float d; //tüketim
+	float e; //maliyet
+
+	printf("Please Enter Your Distance Travelled in KM: ");
+	scanf("%f", &a);
+	printf("\nPlease Enter Your Fuel Consumed in liters: ");
+	scanf("%f", &b);
+	printf("\nPlease Enter Your Fuel Price Per Liter in TL: ");
+	scanf("%f", &c);
+
+	d = (b / a) * 100;
+
+	e = b * c;
+
+	if (d <= 5)
+	{
+		printf("Average Consume: %.2f L/100Km\nTotal Price: %.2f TL\nDrive Mode: Eco",d,e);
+	}
+	else if (5 < d && d <= 8)
+	{
+		printf("Average Consume: %.2f L/100Km\nTotal Price: %.2f TL\nDrive Mode: Normal", d, e);
+	}
+	else
+	{
+		printf("Average Consume: %.2f L/100Km\nTotal Price: %.2f TL\nDrive Mode: High Consume", d, e);
+	}
+	*/
+	//if else te mantýksal öperatörler
+	// && ve anlamýna gelir
+	// || veya anlamýna gelir
+
+	
 	return 0;
 }
