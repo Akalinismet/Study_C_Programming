@@ -350,7 +350,7 @@ int main(void)
 	printf("\nB iterasyon dizisi degerler toplami; %d\n ", iter2toplam);
 	printf("\nB iterasyon dizisi toplam deger sayisi %d\n ", count2);
 	*/
-	
+	/*
 	//For örnek soru: 9-100 arasýndaki 7 nin katlarýný ve toplamýný ekrana yazdýrýn
 	int count = 0;
 	int toplam = 0;
@@ -363,6 +363,24 @@ int main(void)
 	}
 	
 	printf("7'nin 9-100 arasi katlari toplami: %d\n", toplam);
-
+	*/
+	
+	//while döngüsü
+	//for'dan farklý olarak sayac kullanýlmak zorundadýr sayac whýle'ýn dýsýna yazýlýr 
+	// while'in içindeki koþul doðru olduðu sürece çalýþmaya devam eder
+	/*
+	int a = 0;
+	
+	while (a < 10)
+	{
+		a++;
+		printf("%d\n", a);
+	}
+	*/
+	
+	
+	
+	
+	
 	return 0;
 }
