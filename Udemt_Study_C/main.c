@@ -2,6 +2,7 @@
 #include <limits.h> //Veri Tipleri'nin Deðer Aralýklarýný Öðrenmek için Gerekli Kütüphane
 #include <float.h> //Float ile iþlemler kütüphanesi
 #include <math.h> //C Matematiksel iþlemler kütüphanesi
+#include <stdbool.h> //Boolean veri tipi kütüphanesi
 
 /*
 //Celsius'u Fahrenheit'e Çevirme Fonksiyonu
@@ -258,7 +259,110 @@ int main(void)
 	//if else te mantýksal öperatörler
 	// && ve anlamýna gelir
 	// || veya anlamýna gelir
+	/*
+	//Mantýksal Operatörler ve 1-0 (temel boolean) Veri Tipi
+	int x; 
+	int y;  
+	int z;  
 
+	x = 4 < 7; //doðruysa 1, yanlýþsa 0 döndürür
+	y = (3 < 6) && (40 % 2 == 10); //bu 1 ve 0 larý mantýksal operatörlerlede kullanabiliriz
+	z = (31 < 6) && (40 % 2 == 1) || (10 / 2 == 5); //Mantýksal operatorlerle birlikte kombinede kullanýlabýlýr (kontrole soldan baþlar)
 	
+	printf("x:%d y:%d z:%d",x,y,z);
+	*/
+
+	/*
+	//Konoldan gýrýlen býr sayýnýn 3'e veya 7'ye bolunup bolunmedýgýný yazan program
+	int a; //Kullanýcýdan Alýnan Sayý
+	int b;
+	int c;
+
+	printf("Please Enter Your Number for Division to 3 or 7 Control: ");
+	scanf("%d",&a);
+	
+	b = (a % 3 == 0);
+	c = (a % 7 == 0);
+
+	if (b == 1)
+	{
+		printf("The number you entered %d is divisible by 3\n",a);
+	}
+	else
+	{
+		printf("The number you entered %d is not divisible by 3\n",a);
+	}
+	
+	if (c == 1)
+	{
+		printf("The number you entered %d is divisible by 7",a);
+	}
+	else
+	{
+		printf("The number you entered %d is not divisible by 7",a);
+	}
+	*/
+	/*
+	//Boolean veri tipi
+	//Sadece 0 yada 1 tutabilir
+
+	bool agirmi = true;
+	bool hafifmi = false;
+
+	printf("kosul1: %d, kosul2: %d",agirmi,hafifmi);
+	*/
+	
+	//For döngüsü
+	//for'un syntax'ý;
+	// for(baþlangýç deðeri;dögü koþulu;sayacýn deðiþtirilmesi)
+	//scope: yaþam alaný
+	//i'nin scope'u for dögüsünün içinde
+	//for da kullanýðýmýz deðiþkeni hep bu þekil local tanýmlamalýyýz
+	//for dýþýndan müdahale edilememeli
+	/*
+	int iter1toplam = 0;
+	int iter2toplam = 0;
+	int count1 = 0;
+	int count2 = 0;
+	for (int i = 0; i <= 10 ; i++)
+	{
+	
+		printf("iterasyon %d\n", i);
+		iter1toplam = iter1toplam + i; //bu þekilde fonksiyonun döndürdüðü i lerin toplamýný hesaplayabiliyoruz
+		count1++; //bu þekilde fonksiyonun döndürdüðü i lerin sayýsýný tutabiliyoruz
+
+	}
+	
+	printf("\nA iterasyon dizisi degerler toplami; %d\n\n", iter1toplam);
+	printf("\nA iterasyon dizisi toplam deger sayisi; %d\n\n", count1);
+
+	//bu þekilde local tanýmlandýðýnda farklý for döngülerinde ayný deðiþken kullanýlsa bile çakýþma olmaz
+	
+	for (int i = 10; i >= 1; i-=4)
+	{
+
+		printf("iterasyon %d\n", i);
+		iter2toplam = iter2toplam + i;
+		count2++;
+
+	}
+	
+	printf("\nB iterasyon dizisi degerler toplami; %d\n ", iter2toplam);
+	printf("\nB iterasyon dizisi toplam deger sayisi %d\n ", count2);
+	*/
+	
+	//For örnek soru: 9-100 arasýndaki 7 nin katlarýný ve toplamýný ekrana yazdýrýn
+	int count = 0;
+	int toplam = 0;
+	for (int i = 14; i <= 100; i += 7)
+	{
+		count++;
+		printf("7'nin 9-100 arasi %d. kati: %d\n", count, i);
+		toplam = toplam + i;
+			
+	}
+	
+	printf("7'nin 9-100 arasi katlari toplami: %d\n", toplam);
+
 	return 0;
 }
