@@ -3,6 +3,11 @@
 #include <float.h> //Float ile iþlemler kütüphanesi
 #include <math.h> //C Matematiksel iþlemler kütüphanesi
 #include <stdbool.h> //Boolean veri tipi kütüphanesi
+#include <time.h> //rand() Fonksiyonu Kütüphanesi
+
+#include <conio.h>  // getch()
+#include <stdlib.h> // system()
+#include <windows.h> // Sleep()
 
 /*
 //Celsius'u Fahrenheit'e Çevirme Fonksiyonu
@@ -377,10 +382,65 @@ int main(void)
 		printf("%d\n", a);
 	}
 	*/
+	/*
+	//Do-While Döngüsü
+	int sayac = 0;
+	int a = 5;
+	int b = 2;
 	
+	do {
+		//kod bloðu
+		printf("This do-while loop: iterasyon %d\n",sayac);
+		sayac++;
 	
+	} while (a > b); //koþul
+
+	//do-whýle ile whýle'ýn farký;
+	//Whýlede kosul yanlýssa donguye hýc gýrmez ama 
+	// do-whýleda yanlýs olsa býle en az býr defa donguye gýrer
+	*/
 	
+	//rand() Fonksiyonu kullanýmý
 	
+	//rand() fonksiyonu bu þekilde baþlatýlmazsa program kapatýlýp açýlmadýðý sürece ayný sayýyý verir
+	
+	/*
+	srand(time(NULL)); 
+	
+	int x = rand();
+	int y = rand();
+
+	printf("rastgele sayi: %d\n", x); //rastgele býr sayýyý yazar ekrana
+	printf("rastgele 0-100 arasi sayi: %d", (x % 100)); //bu þekilde 0-100 arasý rastgele bir sayýyý ekrana yazar
 	
 	return 0;
+	*/
+	/*
+	//Döngülerde break ve continue kullanýmý
+	
+	for(int i = 0; i <= 10; i++)
+	{
+		printf("%d\n",i);
+		
+		if (i == 5) 
+			break; //burada break'i kullanarak i = 5 olduðunda for döngü koþulu daha tamamlanmamýþken dögüden çýkabiliyoruz
+	}
+
+	for (int i = 0; i <= 10; i++)
+	{
+		if (i == 5)
+			continue; //burada continue'i kullanarak i = 5 olduðunda 5'i atlýyýp 6.indexten devam edecek
+
+		printf("%d\n", i);
+
+	}
+	*/
+
+
+	return 0;
 }
+
+
+
+
+
