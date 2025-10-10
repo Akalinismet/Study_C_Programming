@@ -36,7 +36,40 @@ int SecondTransformation(int saniye)
 */
 int main(void)
 {
+	//C'de Anahtar Kelimeler
+	/*
+	
+	auto
+	double
+	int struct
+	break
+	else
+	long
+	switch
+	case
+	enum
+	register
+	typedef
+	char 
+	extern
+	return
+	union
+	const
+	float
+	short
+	unsigned
+	continue
+	goto
+	sizeof
+	volatile
+	do
+	if
+	static
+	while
 
+	Bu kelimlerin C dilinde özel anlamý olan karþýlýklarý vardýr 
+	Deðiþken isimlendirirken kullanýlmamalýdýrlar 
+	*/
 	
 	//int = 4 byte, %d
 	//–2,147,483,648 … 2,147,483,647 arasý deðer tutabilir
@@ -71,7 +104,53 @@ int main(void)
 	//–9,223,372,036,854,775,808 … 9,223,372,036,854,775,807 arasý deðer tutabilir
 	//long long int sayý = 0; //þeklinde tanýmlanabilir
 	// %lld kullanýlýr
+	
+	//özel degisken tipleri
+	/*
+	Type Qualifers;
+	const
+	const int a = 5; seklinde tanýmlandýðýnda a'nin degeri programýn çalýþma süresi boyunca asla deðiþmez	
 
+	volatile
+	volatile int a; seklýnde tanýmlandýgýnda a deðikeni ile ilgili hiç bir komut IDE'nin yaptýðý optimizyona uðramayacaktýr
+	(pointerlar konusunda iþe yarayacak)
+
+	restrict 
+	(sadece pointer deðiþkenlerin önüne konabilir)
+	(pointer optimazyonu için derleyiciye güvenle optimze edebilirsin der)
+	Normalde bir bellek alaný birden fazla pointer deðiþken tarafýndan referans gösterilebilir.
+	Bu durumda derleyici, o bellek alaný üzerinde optimizasyon yapamaz.
+	Eðer pointer deðiþkeni restrict olarak tanýmlarsak, ilgili bellek alanýnýn sadece, 
+	o pointer tarafýndan yönetilmesini (referans gösterilmesini) garanti altina almiþ oluruz.
+	Eðer derleyici bir bellek alanýnýn tek bir pointer deðiþken tarafýndan yönetildiðini bilirse,
+	bu alan üzerinde optimizasyona gidebilir. 
+	
+	int * restrict ptr1;
+	int * restrict ptr2;
+	
+	*ptr1 = *ptr1 + 2;
+	*ptr2 = *ptr2 + 2;
+	*ptr1 = *ptr1 + 10;
+
+	burada derleyici prt1 deðiþkeninin baþka hiç bir pointer deðiþken tarafýndan deðiþtireyeceðini bildiði için;
+	1 ve 3. satýrdaki ifade derleyici tarafýndan birleþtirilerek aþaðýdaki gibi yürütülmesinin saðlayacaktýr;
+	
+	*ptr1 = *ptr1 + 12;
+	*ptr2 = *ptr2 + 2;
+
+	Bu optimizasyon ile kodumuz 2 satýra inmiþtir.Sonuç olarak programýmýz çalýþýrken iþlemciye bir komut az
+	gönderdiði için daha hýzlý çalýþacaktýr.
+
+	Storage Classes (Bellek Depolama Sýnýflarý);
+	extern
+	static
+	auto
+	register
+
+	
+	
+	*/
+	
 	//deðiþkenlerin tutabildikleri deðer aralýklarýný öðrenmek için aþaðýdaki kod kullanýlabilir
 	/*
 	printf("int min  : %d\n", INT_MIN);
@@ -97,6 +176,27 @@ int main(void)
 	long long max : 9223372036854775807
 	double max : 1.797693e+308
 	long double max : 1.797693e+308
+	*/
+
+	//Veri Tiplerini Bellekte kapladýðý alaný öðrenme
+	/*
+	char charDegisken = 'X';
+	short int shortIntSayi = 45;
+	int intSayi = 24;
+	long int longIntSayi = 151;
+	long long int longLongIntSayi = 1654564;
+	float floatSayi = 2.3;
+	double doubleSayi = 7.77;
+	long double longDoubleSayi = 3.14159;
+
+	printf("char tipi bellek alani: %lu byte\n", sizeof(charDegisken));
+	printf("short int tipi bellek alani: %lu byte\n", sizeof(shortIntSayi));
+	printf("int tipi bellek alani: %lu byte\n", sizeof(intSayi));
+	printf("longIntSayi tipi bellek alani: %lu byte\n", sizeof(longIntSayi));
+	printf("longLongIntSayi tipi bellek alani: %lu byte\n", sizeof(longLongIntSayi));
+	printf("floatSayi tipi bellek alani: %lu byte\n", sizeof(floatSayi));
+	printf("doubleSayi tipi bellek alani: %lu byte\n", sizeof(doubleSayi));
+	printf("longDoubleSayi tipi bellek alani: %lu byte\n", sizeof(longDoubleSayi));
 	*/
 
 	//scanf'deki deðikeni tanýmlarken önüne koyduðumuz & bu iþaret þunu refere eder; 
