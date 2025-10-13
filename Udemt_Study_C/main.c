@@ -9,7 +9,18 @@
 #include <stdlib.h> // system()
 #include <windows.h> // Sleep()
 
+#include <stdlib.h>	//Standart Type Converion kütüphanesi
+#include <ctype.h> //Standart Type Converion kütüphanesi
+
+#define SIZE 50 //Type conversion ör için tanýmlama
 /*
+//Static ör fonksiyon prototipleri
+void artirNormal(void);
+void artirStatic(void);
+*/
+
+/*
+* ----------------------------------------------------------------------------------------------------------
 //Celsius'u Fahrenheit'e Çevirme Fonksiyonu
 int a;
 
@@ -17,8 +28,10 @@ float CelsiusToFahrenheit(int a)
 {
 	return  ((a * ((float) 9 / 5)) + 32);
 }
+----------------------------------------------------------------------------------------------------------
 */
 /*
+----------------------------------------------------------------------------------------------------------
 //Saniye Süreyi Saat-Dakika-Saniye'ye Dönüþtürme Fonksiyonu
 int saniye;
 int dakika;
@@ -33,12 +46,14 @@ int SecondTransformation(int saniye)
 	
 	printf("Your Time in format (h/m/s): %d:%d:%d",saat,dakika,saniye);
 }
+----------------------------------------------------------------------------------------------------------
 */
 int main(void)
 {
-	//C'de Anahtar Kelimeler
 	/*
-	
+	----------------------------------------------------------------------------------------------------------
+	//C'de Anahtar Kelimeler
+
 	auto
 	double
 	int struct
@@ -69,19 +84,20 @@ int main(void)
 
 	Bu kelimlerin C dilinde özel anlamý olan karþýlýklarý vardýr 
 	Deðiþken isimlendirirken kullanýlmamalýdýrlar 
+	----------------------------------------------------------------------------------------------------------
 	*/
 	
 	//int = 4 byte, %d
 	//–2,147,483,648 … 2,147,483,647 arasý deðer tutabilir
-	
+	//----------------------------------------------------------------------------------------------------------
 	//float = 4 byte, %f
 	// %.xf => bu sekýlde yazýlýrsa noktadan sonra x sayý gozukur
 	//float a = 2.25648348;
 	//printf("float sayi: %.2f",a);
-
+	//----------------------------------------------------------------------------------------------------------
 	//double = 8 byte, %lf
 	// %.xlf => bu sekýlde yazýlýrsa noktadan sonra x sayý gozukur
-
+	//----------------------------------------------------------------------------------------------------------
 	//double vs float
 	/*
 	float:
@@ -94,27 +110,27 @@ int main(void)
 	Yaklaþýk 15–16 basamak kesinlik saðlar.
 	Daha büyük sayýlar ve daha hassas iþlemler için uygundur.
 	*/
-
+	//----------------------------------------------------------------------------------------------------------
 	//char = 1 byte, %c 
 	//karakter tutar
 	//char karakter = 'A';
 	//printf("Harf: %c",karakter);
-
+	//----------------------------------------------------------------------------------------------------------
 	//long = 32bit sistemlerde 4 bytes, 64bit sistemlerde 8 bytes
 	//–9,223,372,036,854,775,808 … 9,223,372,036,854,775,807 arasý deðer tutabilir
 	//long long int sayý = 0; //þeklinde tanýmlanabilir
 	// %lld kullanýlýr
-	
+	//----------------------------------------------------------------------------------------------------------
 	//özel degisken tipleri
 	/*
 	Type Qualifers;
 	const
 	const int a = 5; seklinde tanýmlandýðýnda a'nin degeri programýn çalýþma süresi boyunca asla deðiþmez	
-
+	----------------------------------------------------------------------------------------------------------
 	volatile
 	volatile int a; seklýnde tanýmlandýgýnda a deðikeni ile ilgili hiç bir komut IDE'nin yaptýðý optimizyona uðramayacaktýr
 	(pointerlar konusunda iþe yarayacak)
-
+	----------------------------------------------------------------------------------------------------------
 	restrict 
 	(sadece pointer deðiþkenlerin önüne konabilir)
 	(pointer optimazyonu için derleyiciye güvenle optimze edebilirsin der)
@@ -140,17 +156,107 @@ int main(void)
 
 	Bu optimizasyon ile kodumuz 2 satýra inmiþtir.Sonuç olarak programýmýz çalýþýrken iþlemciye bir komut az
 	gönderdiði için daha hýzlý çalýþacaktýr.
-
+	----------------------------------------------------------------------------------------------------------
+	_Atomic
+	C11 Standardýnda geçerlidir
+	Tanýmlanan deðiþkenler birden fazla thread (kanal) tarafýndan kullanýlmaya müsait hale gelecektir
+	----------------------------------------------------------------------------------------------------------
 	Storage Classes (Bellek Depolama Sýnýflarý);
 	extern
 	static
 	auto
 	register
+	----------------------------------------------------------------------------------------------------------
+	extern
+	extern ile bir dosyada tanýmlanan global deðiþkenlerin diðer dosyada kullanbilmesini saðlar
+	ör: main.c subfolder.h ayný programýn bir parçasýysa main.c de veya subfolder.h'ta 
+	tanýmlý bir deðiþken diðer dosyadada kullanýlabilmektedir
+	
+	//subfolder.h ta tanýmlý sayi deðiþkeni olsun
+	int sayi = 5;
+	//main.c de bu þekilde ayný sayý degerýný kullanabýlýyoruz
+	extern int sayi;
+	//bu þekilde tanýmlandýðýnda sayi deðiþkeni iki dosyada ayný bellek alanýný ifade eder
+	//bu þekilde tanýmlamamýþ olsak farklý bellek alanlarý kullanýlýrdý
+	----------------------------------------------------------------------------------------------------------
+	register
+	Bazý programlarda çok kullanýlan deðiþkenlerin hýzlý iþlem görmesini isteyebiliriz
+	Deðiþken deðerleri genellikle bellekte depolanýrlar fakat belleðe eriþim yavaþtýr
+	Bu sebeple daha hýzlý iþlem yapmak için deðiþkenlerimizin bellekte deðil CPU üzerindeki 
+	Register (Yazmaç)'larda tutulmasý isteyebiliriz Bunu yapmak için register'ý kullanýrýz
+	//ör:
+	register int z = 5;
+	printf("registerda tutulan sayi: %d",z);
 
-	
-	
+	Uyarý: CPU'daki registerlarýn sayýsý sýnýrlýdýr (kullanýlan cihaza göre deðiþebilir ama yinede sýnýrlýdýr)
+	Bu yüzden register sadece gerekli görüldüðünde kullanýlmalýdýr, eðer çok sayýda register tanýmlamasý yapýp
+	CPU'nun limitine ulaþýrsak limiti aþan deðiþkenler normal deðiþken gibi iþlem görürler
+
+	Uyarý2: register deðiþkenleri pointerlar ile kullanamayýz, çünkü pointer deðiþkenler bellek adresi tutmak için
+	tasarlanmýþtýr. Register deðiþkenler ise registerlarda tutulduklarý için bellek adresleri yoktur
+	//Ör:
+	//register tanýmlanmasý
+	register int x = 4;
+	//register olarak tanýmlanmýþ deðiþenin bellek adresine & ile eriþemeyiz
+	//Dolayýsýyla aþaðýdaki satýr derlenmede hata verir
+	int *pointer = &x;
+
+	printf("%d\n",*pointer);
+	return 0;
+	//Bu koda derlendiðinde hata verir çýktý almak istiyorsak baþtaki register tanýmlamasýný kaldýrmamýz gerekir
+	----------------------------------------------------------------------------------------------------------
+	static
+	bununla tanýmlanan deðiþkenler deðerlerini kaybetmezler
+	//ör:
+	//fonksiyon prototipleri mainini üstünde tanýmlý
 	*/
-	
+	/*
+	printf("-----------------------------\n");
+	printf("Normal Degisken ornegi\n");
+	printf("-----------------------------\n");
+	artirNormal();
+	artirNormal();
+	artirNormal();
+
+	printf("-----------------------------\n");
+	printf("Static Degisken ornegi\n");
+	printf("-----------------------------\n");
+	artirStatic();
+	artirStatic();
+	artirStatic();
+	*/
+	//fonksiyon tanýmlarýn mainin dýþýnda altta
+
+	//Yazýlan kodun çýktýsý
+	/*
+	-----------------------------
+	Normal Degisken ornegi
+	-----------------------------
+	Normal: 0
+	Normal: 0
+	Normal: 0
+	-----------------------------
+	Static Degisken ornegi
+	-----------------------------
+	Static: 0	
+	Static: 1
+	Static: 2
+	----------------------------------------------------------------------------------------------------------
+	auto
+	bu kelime baþýna eklendiði deðiþkenin deðiþken tanýmýndaki deðiþkenin 
+	geçiçi bir süre zarfýnda kullanýlacaðýný söyler
+
+	Eskinden (10 yýllar önce) belli bir kod bloðunda geçerli yerel deðiþken tanýmlamanýn
+	tek yolu auto yu kullanmaktý ama þimdi bunu derleyiciler sanki auto varmýþ gibi algýlayýp yapýyor
+
+	auto nun sadece c de anahtar kelime olduðunu bilmek yeterlidir kodlarda kullanýlmayacak
+	----------------------------------------------------------------------------------------------------------
+	*/
+
+	/*
+	----------------------------------------------------------------------------------------------------------
+	*/
+	//----------------------------------------------------------------------------------------------------------
 	//deðiþkenlerin tutabildikleri deðer aralýklarýný öðrenmek için aþaðýdaki kod kullanýlabilir
 	/*
 	printf("int min  : %d\n", INT_MIN);
@@ -176,6 +282,7 @@ int main(void)
 	long long max : 9223372036854775807
 	double max : 1.797693e+308
 	long double max : 1.797693e+308
+	----------------------------------------------------------------------------------------------------------
 	*/
 
 	//Veri Tiplerini Bellekte kapladýðý alaný öðrenme
@@ -197,11 +304,12 @@ int main(void)
 	printf("floatSayi tipi bellek alani: %lu byte\n", sizeof(floatSayi));
 	printf("doubleSayi tipi bellek alani: %lu byte\n", sizeof(doubleSayi));
 	printf("longDoubleSayi tipi bellek alani: %lu byte\n", sizeof(longDoubleSayi));
+	----------------------------------------------------------------------------------------------------------
 	*/
 
 	//scanf'deki deðikeni tanýmlarken önüne koyduðumuz & bu iþaret þunu refere eder; 
 	// x = deðiþken, &x = memory (ram)'deki x'in adresi
-
+	//----------------------------------------------------------------------------------------------------------
 	//Kullanýcýdan get ile string alma
 
 	//char ad[20];
@@ -210,7 +318,7 @@ int main(void)
 	//gets(ad);
 	//printf("Girilen ad %s",ad);
 	//gets sadece string okur
-	
+	//----------------------------------------------------------------------------------------------------------
 	/* exp:yaþ hesaplama 
 	
 	int x;
@@ -222,7 +330,7 @@ int main(void)
 	
 	printf("Your age is %d",age);
 	*/
-
+	//----------------------------------------------------------------------------------------------------------
 	//C de math kütüphanesi
 	//buradaký fonksýyonlar; 
 	//prýntfýn dýsýndada kullanýlabýlýr
@@ -235,8 +343,10 @@ int main(void)
 	//printf("%.2f", sqrt(81)); //karekök alma
 	//printf("%.2f", exp(2)); //e üzeri alma (e^x),(e = 2.72) 
 	
-	//Type Casting
 	/*
+	----------------------------------------------------------------------------------------------------------
+	//Type Casting
+	//Type casting operatörü bölme iþleminden önceliklidir
 	int x = 771;
 	int y = 4;
 	int d = 6;
@@ -247,6 +357,103 @@ int main(void)
 	
 	printf("%f\n",z);
 	printf("%lf", c);
+	----------------------------------------------------------------------------------------------------------
+	//Type Converison (Tip Çevrimleri)
+	stringden floata çevrimek gibi aðýr dönüþümler için kullanýlýr
+	bu iþ için özelbazý fonksiyonlar kullanýlmaktadýr
+	bu fonksiyonlar "stdlib.h" ve "ctype.h" isimli standart kütüphaneler altýnda bulunmaktadýr
+	bu kütüphanede en çok kullanýlan fonksiyonlar;
+	----------------------------------------------------------------------------------------------------------
+	atoi
+	stdlib.h ile gelen bu fonksiyon kendisine parametre olarak gelen karekter dizisini tamsayýya çevirir
+	ve bu tam sayýyý return ile döndürür
+	//Fonksiyon prototipi
+	int atoi(const char *);
+	----------------------------------------------------------------------------------------------------------
+	atof
+	kendisine parametre olarak gelen karekter dizisini ondalýk sayýya çevirir
+	ve sayýyý return ile döndürür
+	//fonksiyon imzasý
+	int atof(const char *);
+	----------------------------------------------------------------------------------------------------------
+	isDigit
+	ctype.h ile gelen bu fonksiyon kendisine parametre olarak gelen karekterterin sayýsal deðer olup olmadýðýný
+	bulur eðer karakter '0','1','2','3','4','5','6','7','8','9' deðerlerinden birine sahipse bu fonksiyon 1 deðeri
+	döndürür eðer sahip deðilse 0 deðeri döndürür
+	----------------------------------------------------------------------------------------------------------
+	//Bu Fonksiyonlarýn kullanýlmýna örnek
+	
+	//main istünde SIZE tanýmlamasý
+	char metin[SIZE];
+
+    char sayistr1[] = "256";
+    char sayistr2[] = "134";
+    char sayistr3[] = "9.25";
+    char sayistr4[] = "3.75";
+
+    // ilk iki karakter dizisini atoi ile tam sayýya çevirip topluyoruz
+    int sayi1 = atoi(sayistr1);
+    int sayi2 = atoi(sayistr2);
+    int toplam1 = sayi1 + sayi2;
+    printf("Toplam 1 -> %d\n", toplam1);
+
+    // 3 ve 4. karakter dizisini atof ile ondalýk sayýya çevirip topluyoruz
+    float sayi3 = atof(sayistr3);
+    float sayi4 = atof(sayistr4);
+    float toplam2 = sayi3 + sayi4;
+    printf("Toplam 2 -> %.2f\n", toplam2);
+
+    // isdigit kullanýmý
+    printf("Please Enter String Series: ");
+    fgets(metin, SIZE, stdin);
+
+    printf("Your integers from your entered string series: ");
+    for (int i = 0; i < SIZE; i++)
+    {
+        if (metin[i] == '\0')
+            break;
+        if (isdigit((unsigned char)metin[i]))   
+			// önemli: unsigned char dönüþtür
+			//isdigit()’e verilen deðer unsigned char olmalý, aksi takdirde 
+			//negatif char deðerlerinde tanýmsýz davranýþ olabilir.
+            printf("%c", metin[i]);
+    }
+    printf("\n");
+	----------------------------------------------------------------------------------------------------------
+	Diðer Type Conversion Fonksiyonlarý
+	----------------------------------------------------------------------------------------------------------
+	isalpha
+	ctype.h kütüphanesiyle gelir
+	parametre olarak giren býr karekterýn alfabedeký harflerden býrý olup olmadýgýný kontrol eder
+	eger gelen parametre bir harfse 0'dan farklý býr deðer dondurur
+	eger degýlse 0 deðerini döndürür
+	----------------------------------------------------------------------------------------------------------
+	isalnum
+	ctype.h kütüphanesiyle gelir
+	kendisine parametre olarak gelen bir alfanumerik bir ifade olup olmadýðýný bulur
+	eðer karekter bir harfe karþýlýk geliyorsa veya '0','1','2','3','4','5','6','7','8','9' deðerlerinden 
+	birine sahipse; bu fonksiyon sýfýrdan farklý býr deger dondurur, Aksi taktride 0 deðerini döndürür
+	----------------------------------------------------------------------------------------------------------
+	islower
+	ctype.h kütüphanesiyle gelir
+	kendisine parametre olarak gelen bir harfin küçük harf olup olmadýðýný kontrol eder; eðer küçük harf ise
+	0'dan farlý bir deðer döndürür; eðer deðilse 0 deðerini döndürür
+	----------------------------------------------------------------------------------------------------------
+	isupper
+	ctype.h kütüphanesiyle gelir
+	kendisine parametre olarak gelen bir harfin büyük harf olup olmadýðýný kontrol eder; eðer büyük harf ise
+	0'dan farlý bir deðer döndürür; eðer deðilse 0 deðerini döndürür
+	----------------------------------------------------------------------------------------------------------
+	tolower
+	ctype.h kütüphanesiyle gelir
+	kendisine parametre olarak gelen bir harfin küçük harf olup olmadýðýný kontrol eder; eðer küçük harf ise
+	ayný deðeri geri döndürür; eðer büyük harf ise küçük harfe çevirir ve bu deðeri geri döndürür
+	----------------------------------------------------------------------------------------------------------
+	toupper
+	ctype.h kütüphanesiyle gelir
+	kendisine parametre olarak gelen bir harfin büyük harf olup olmadýðýný kontrol eder; eðer büyük harf ise
+	ayný deðeri geri döndürür; eðer küçük harf ise büyük harfe çevirir ve bu deðeri geri döndürür
+	----------------------------------------------------------------------------------------------------------
 	*/
 	
 	//if-else
@@ -270,8 +477,10 @@ int main(void)
 		printf("Your Temperature (%.2f) is Lower than the Room Temperature",a);
 
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//Celsius To Fahrenheit dönüþtürme (Fonksiyon Tanýmlayarak)
 	float b;
 
@@ -289,9 +498,11 @@ int main(void)
 	scanf("%d",&saniye);
 
 	SecondTransformation(saniye);
+	----------------------------------------------------------------------------------------------------------
 	*/
 
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//Üçgen olduðunu doðrulama ve heron formülüyle alan hesaplama
 	
 	float a, b, c; //üçgenin kenarlarý 
@@ -328,8 +539,10 @@ int main(void)
 	{
 		printf("\nThis is Not a Triangle !");
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//km-per price-consume a göre maliyet tüketim ve drive mode belirleme
 	float a; //kat edilen mesafe km cinsinde
 	float b; //harcanan yakýt litre cindisinden
@@ -360,11 +573,13 @@ int main(void)
 	{
 		printf("Average Consume: %.2f L/100Km\nTotal Price: %.2f TL\nDrive Mode: High Consume", d, e);
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 	//if else te mantýksal öperatörler
 	// && ve anlamýna gelir
 	// || veya anlamýna gelir
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//Mantýksal Operatörler ve 1-0 (temel boolean) Veri Tipi
 	int x; 
 	int y;  
@@ -375,10 +590,12 @@ int main(void)
 	z = (31 < 6) && (40 % 2 == 1) || (10 / 2 == 5); //Mantýksal operatorlerle birlikte kombinede kullanýlabýlýr (kontrole soldan baþlar)
 	
 	printf("x:%d y:%d z:%d",x,y,z);
+	----------------------------------------------------------------------------------------------------------
 	*/
 
 	/*
-	//Konoldan gýrýlen býr sayýnýn 3'e veya 7'ye bolunup bolunmedýgýný yazan program
+	----------------------------------------------------------------------------------------------------------
+	//Konsoldan gýrýlen býr sayýnýn 3'e veya 7'ye bolunup bolunmedýgýný yazan program
 	int a; //Kullanýcýdan Alýnan Sayý
 	int b;
 	int c;
@@ -406,8 +623,10 @@ int main(void)
 	{
 		printf("The number you entered %d is not divisible by 7",a);
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 	/*
+	*----------------------------------------------------------------------------------------------------------
 	//Boolean veri tipi
 	//Sadece 0 yada 1 tutabilir
 
@@ -415,6 +634,7 @@ int main(void)
 	bool hafifmi = false;
 
 	printf("kosul1: %d, kosul2: %d",agirmi,hafifmi);
+	----------------------------------------------------------------------------------------------------------
 	*/
 	
 	//For döngüsü
@@ -454,8 +674,10 @@ int main(void)
 	
 	printf("\nB iterasyon dizisi degerler toplami; %d\n ", iter2toplam);
 	printf("\nB iterasyon dizisi toplam deger sayisi %d\n ", count2);
+	----------------------------------------------------------------------------------------------------------
 	*/
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//For örnek soru: 9-100 arasýndaki 7 nin katlarýný ve toplamýný ekrana yazdýrýn
 	int count = 0;
 	int toplam = 0;
@@ -468,6 +690,7 @@ int main(void)
 	}
 	
 	printf("7'nin 9-100 arasi katlari toplami: %d\n", toplam);
+	----------------------------------------------------------------------------------------------------------
 	*/
 	
 	//while döngüsü
@@ -481,8 +704,10 @@ int main(void)
 		a++;
 		printf("%d\n", a);
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 	/*
+	----------------------------------------------------------------------------------------------------------
 	//Do-While Döngüsü
 	int sayac = 0;
 	int a = 5;
@@ -498,6 +723,7 @@ int main(void)
 	//do-whýle ile whýle'ýn farký;
 	//Whýlede kosul yanlýssa donguye hýc gýrmez ama 
 	// do-whýleda yanlýs olsa býle en az býr defa donguye gýrer
+	----------------------------------------------------------------------------------------------------------
 	*/
 	
 	//rand() Fonksiyonu kullanýmý
@@ -505,6 +731,7 @@ int main(void)
 	//rand() fonksiyonu bu þekilde baþlatýlmazsa program kapatýlýp açýlmadýðý sürece ayný sayýyý verir
 	
 	/*
+	----------------------------------------------------------------------------------------------------------
 	srand(time(NULL)); 
 	
 	int x = rand();
@@ -534,13 +761,32 @@ int main(void)
 		printf("%d\n", i);
 
 	}
+	----------------------------------------------------------------------------------------------------------
 	*/
 
 
 	return 0;
 }
+	/*
+	//Static ör fonksiyon tanýmlarý
+	void artirNormal(void)
+	{
+	//x deðiþkeni static olarak tanýmlanmadýðý için
+	//artirNormal fonksiyonu her çaðýrýldýðýnda x deðeri sýfýrlanýr
+	int x = 0;
+	printf("Normal: %d\n",x);
+	x++;
+	}
 
-
+	void artirStatic(void)
+	{
+	//x deðiþkeni static olarak tanýmlandýðý için
+	//artirStatic fonksiyonu tekrar çaðýrýldýðýnda deðerini kaybetmez
+	static int x = 0;
+	printf("Static: %d\n",x);
+	x++;
+	}	
+	*/
 
 
 
