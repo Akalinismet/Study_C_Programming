@@ -6,10 +6,9 @@
 #include <time.h> //rand() Fonksiyonu Kütüphanesi
 
 #include <conio.h>  // getch()
-#include <stdlib.h> // system()
+#include <stdlib.h> // system()//Standart Type Converion kütüphanesi
 #include <windows.h> // Sleep()
 
-#include <stdlib.h>	//Standart Type Converion kütüphanesi
 #include <ctype.h> //Standart Type Converion kütüphanesi
 
 #define SIZE 50 //Type conversion ör için tanýmlama
@@ -762,7 +761,101 @@ int main(void)
 
 	}
 	----------------------------------------------------------------------------------------------------------
-	*/
+	Aritmetik Arttýrma ve Azaltma Operatörleri (++ ve --)
+	
+	++ operatörü
+	1 arttýrýr
+	sayi++ => önce deðer atamasý yapýlýr sonra arttýrýlýr, 1 arttýrýr 
+	++sayi => önce arttýrýlýr sonra deðer atamasý yapýlýr, 1 arttýrýr
+
+	-- operatörü
+	sayi-- => önce deðer atamasý yapýlýr sonra eksiltilir, 1 eksiltir
+	--sayi => önce eksiltilir sonra deðer atamasý yapýlýr, 1 eksiltir
+	----------------------------------------------------------------------------------------------------------
+	Mantýksal Operatörler (Not(!),And(&&),Or(||),XOR(^))
+	|----------------------------------------------------------------------------------------|
+	| X | Y | NOT X (!X) | NOT Y (!Y) | X and Y (X && Y) | X or Y (X || Y) | X xor Y (X ^ Y) |
+	|----------------------------------------------------------------------------------------|
+	| 0 | 0 |    1       |	   1	  |       0          |        0        |        0        | 
+	|----------------------------------------------------------------------------------------|
+	| 0 | 1 |	 1       |     0      |		  0          |	      1        |	    1        |
+	|----------------------------------------------------------------------------------------|
+	| 1 | 0 |    0       |     1      |		  0          |        1        |        1        |
+	|----------------------------------------------------------------------------------------|
+	| 1 | 1 |	 0	     |	   0      |		  1		     |        1        |        0        | 
+	|----------------------------------------------------------------------------------------|
+	----------------------------------------------------------------------------------------------------------
+	NOT (Deðil) Operatörü
+	Mantýksal ifadenin tümleyenini (deðilini) alýr
+	----------------------------------------------------------------------------------------------------------
+	AND (Ve) Operatörü
+	sað ve solundaki Mantýksal ifadelerin ikiside True(1) ise True Yoksa False(0) verir
+	----------------------------------------------------------------------------------------------------------
+	OR (Veya) Operatörü
+	sað ve solundaki Mantýksal ifadelerin ikiside False(0) ise False Yoksa True(1) verir
+	----------------------------------------------------------------------------------------------------------
+	XOR (^)
+	sað ve solundaki Mantýksal ifadeler birbirinden farklý ise True (1) olur;
+	sað ve solundaki Mantýksal ifadeler birbirinin    ayný ise False(0) olur;
+	----------------------------------------------------------------------------------------------------------
+	BITWISE (Bit'ler üzerinden iþlem yapan) Operatörler
+	Bu operatörler uygulandýklarý deðiþkenleri ikilik tabanda (1 ve 0) çevirip karþýlýk gelen bitler üzerinden 
+	iþlem yapan öperatörlerdir. 5 farklý bit tabanlý operatör bulunmaktadýr;
+	----------------------------------------------------------------------------------------------------------
+	1)Mantýksal And (ve) Operatörü (&)
+	Bu operatör saðýndaki ve solundaki deðiþkenlerin bitleri üzerinden mantýksal and iþlemi uygular
+	ör:
+	unsigned int a = 63;          // 0011 1111 = 63 //
+	unsigned int b = 15;		  // 0000 1111 = 15 //
+	unsigned int c = a & b;       // 0000 1111 = 15 //
+
+	printf("(a & b) = %u\n", c);
+
+	bunun çýktýsý; 
+	
+	(a & b) = 15
+	----------------------------------------------------------------------------------------------------------
+	2)Mantýksal Or (veya) Operatörü (|)
+	Bu operatör saðýndaki ve solundaki deðiþkenlerin bitleri üzerinden mantýksal or iþlemi uygular
+	ör:
+	unsigned int a = 63;          // 0011 1111 = 63 //
+	unsigned int b = 15;		  // 0000 1111 = 15 //
+	unsigned int c = a | b;       // 0011 1111 = 63 //
+
+	printf("(a | b) = %u\n", c);
+
+	bunun çýktýsý;
+
+	(a | b) = 63
+	----------------------------------------------------------------------------------------------------------
+	3)Mantýksal (XOR) Operatörü (^)
+	Bu operatör saðýndaki ve solundaki deðiþkenlerin bitleri üzerinden mantýksal XOR iþlemi uygular
+	ör:
+	unsigned int a = 63;          // 0011 1111 = 63 //
+	unsigned int b = 15;		  // 0000 1111 = 15 //
+	unsigned int c = a ^ b;       // 0011 0000 = 48 //
+
+	printf("(a ^ b) = %u\n", c);
+
+	bunun çýktýsý;
+
+	(a ^ b) = 48
+	----------------------------------------------------------------------------------------------------------
+	4)Complement (Tümleme) Operatörü (~)
+	Bu Operatör uygulandýðý deðiþken veya deðerin ikilik tabandaki karþýlýðýndaki 0 olan bitlerini 1, 
+	1 olan bitlerini 0 yapar.
+	ör:
+	unsigned char ch = 63;
+	unsigned char tumleyen = ~ch;
+	
+	printf("~%d = %d\n", ch, tumleyen);
+	
+	bunun çýktýsý;
+	~63 = 192
+	----------------------------------------------------------------------------------------------------------
+
+
+*/
 
 
 	return 0;
